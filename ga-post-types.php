@@ -13,15 +13,29 @@ add_action('init', 'ga_events_post_type', 0 );
 add_action('init', 'meal_type_taxonomy');
 
 function meal_type_taxonomy(){
-    register_taxonomy(
-        'meal_type', //taxonomy
-        'recipes',
-        array(
-            'label' => __('Meal Type'),
-            'rewrite' => array('slug' => 'meal'),
-            'hierarchical' => true
-        )
-    );
+   $labels = array(
+       'name'               => _x( 'Meal Type', 'taxonomy general name'),
+       'singular_name'      => _x( 'Meal Type', 'taxonomy singular name'),
+       'search_items'       => __( 'Search Meal Type'),
+       'all_items'          => __( 'All Meal Type'),
+       'parent_item'        => __( 'Parent Meal Type'),
+       'parent_item_colon'  => __( 'Parent Meal Type:'),
+       'edit_item'          => __( 'Edit Meal Type'),
+       'update_item'        => __( 'Update Meal Type'),
+       'add_new_item'       => __( 'Add new Meal Type'),
+       'new_item_name'      => __( 'New Meal Type'),
+       'menu_name'          => __( 'Meal Type')
+   );
+
+   $args = array(
+       'hierarchical'       => true, //like categories or tags
+       'labels'             => $labels,
+       'show_ui'            => true, //add the default UI to this taxonomy
+       'show_admin_column' => true, //add the taxonomies to the wordpress admin
+       'query_var'          => true,
+       'rewrite'            => array('slug' => 'meal'),
+   );
+   register_taxonomy( 'meal-type', 'recipes', $args);
 }
 
 function ga_recipe_post_type() {
