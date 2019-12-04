@@ -11,6 +11,7 @@ License: URI: https://www.gnu.org/licenses/gpl-2.0.html
 add_action('init', 'ga_recipe_post_type', 0 );
 add_action('init', 'ga_events_post_type', 0 );
 add_action('init', 'meal_type_taxonomy');
+add_action('init', 'course_taxonomy');
 
 function meal_type_taxonomy(){
    $labels = array(
@@ -36,6 +37,32 @@ function meal_type_taxonomy(){
        'rewrite'            => array('slug' => 'meal'),
    );
    register_taxonomy( 'meal-type', 'recipes', $args);
+}
+
+function course_taxonomy(){
+    $labels = array(
+        'name'               => _x( 'Course', 'taxonomy general name'),
+        'singular_name'      => _x( 'Course', 'taxonomy singular name'),
+        'search_items'       => __( 'Search Course'),
+        'all_items'          => __( 'All Course'),
+        'parent_item'        => __( 'Parent Course'),
+        'parent_item_colon'  => __( 'Parent Course:'),
+        'edit_item'          => __( 'Edit Course'),
+        'update_item'        => __( 'Update Course'),
+        'add_new_item'       => __( 'Add new Course'),
+        'new_item_name'      => __( 'New Course'),
+        'menu_name'          => __( 'Course')
+    );
+
+    $args = array(
+        'hierarchical'       => true, //like categories or tags
+        'labels'             => $labels,
+        'show_ui'            => true, //add the default UI to this taxonomy
+        'show_admin_column' => true, //add the taxonomies to the wordpress admin
+        'query_var'          => true,
+        'rewrite'            => array('slug' => 'course'),
+    );
+    register_taxonomy( 'course', 'recipes', $args);
 }
 
 function ga_recipe_post_type() {
