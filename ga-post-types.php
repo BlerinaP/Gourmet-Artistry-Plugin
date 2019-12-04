@@ -176,3 +176,41 @@ function ga_events_post_type() {
     // register the post Type
     register_post_type( 'events', $args);
 }
+// Register Custom Taxonomy
+function type_event() {
+
+    $labels = array(
+        'name'                       => _x( 'Type of Event', 'Taxonomy General Name', 'meals' ),
+        'singular_name'              => _x( 'Type of Event', 'Taxonomy Singular Name', 'meals' ),
+        'menu_name'                  => __( 'Type of Event', 'meals' ),
+        'all_items'                  => __( 'All Type of Event', 'meals' ),
+        'parent_item'                => __( 'Parent Types of Event', 'meals' ),
+        'parent_item_colon'          => __( 'Parent Types of Event', 'meals' ),
+        'new_item_name'              => __( 'New Type of Event Name', 'meals' ),
+        'add_new_item'               => __( 'Add New Type of Event', 'meals' ),
+        'edit_item'                  => __( 'Edit Type of Event', 'meals' ),
+        'update_item'                => __( 'Update Type of Event', 'meals' ),
+        'view_item'                  => __( 'View Type of Event', 'meals' ),
+        'separate_items_with_commas' => __( 'Separate Type of Event with commas', 'meals' ),
+        'add_or_remove_items'        => __( 'Add or remove Type of Event', 'meals' ),
+        'choose_from_most_used'      => __( 'Choose from the most used', 'meals' ),
+        'popular_items'              => __( 'Popular Items', 'meals' ),
+        'search_items'               => __( 'Search Type of Event', 'meals' ),
+        'not_found'                  => __( 'Not Found', 'meals' ),
+        'no_terms'                   => __( 'No Type of Event', 'meals' ),
+        'items_list'                 => __( 'Items list', 'meals' ),
+        'items_list_navigation'      => __( 'Items list navigation', 'meals' ),
+    );
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+    );
+    register_taxonomy( 'type_event', array( 'events' ), $args );
+
+}
+add_action( 'init', 'type_event', 0 );
