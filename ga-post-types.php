@@ -12,6 +12,7 @@ add_action('init', 'ga_recipe_post_type', 0 );
 add_action('init', 'ga_events_post_type', 0 );
 add_action('init', 'meal_type_taxonomy');
 add_action('init', 'course_taxonomy');
+add_action('init', 'mood_taxonomy');
 
 function meal_type_taxonomy(){
    $labels = array(
@@ -63,6 +64,31 @@ function course_taxonomy(){
         'rewrite'            => array('slug' => 'course'),
     );
     register_taxonomy( 'course', 'recipes', $args);
+}
+function mood_taxonomy(){
+    $labels = array(
+        'name'               => _x( 'Mood', 'taxonomy general name'),
+        'singular_name'      => _x( 'Mood', 'taxonomy singular name'),
+        'search_items'       => __( 'Search Mood'),
+        'all_items'          => __( 'All Mood'),
+        'parent_item'        => __( 'Parent Mood'),
+        'parent_item_colon'  => __( 'Parent Mood:'),
+        'edit_item'          => __( 'Edit Mood'),
+        'update_item'        => __( 'Update Mood'),
+        'add_new_item'       => __( 'Add new Mood'),
+        'new_item_name'      => __( 'New Mood'),
+        'menu_name'          => __( 'Mood')
+    );
+
+    $args = array(
+        'hierarchical'       => false, //like categories or tags
+        'labels'             => $labels,
+        'show_ui'            => true, //add the default UI to this taxonomy
+        'show_admin_column' => true, //add the taxonomies to the wordpress admin
+        'query_var'          => true,
+        'rewrite'            => array('slug' => 'mood'),
+    );
+    register_taxonomy( 'mood', 'recipes', $args);
 }
 
 function ga_recipe_post_type() {
